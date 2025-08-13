@@ -12,12 +12,16 @@ const port = process.env.PORT;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://talksy-sarfaraz-akram.netlify.app"],
+    origin: ["https://talksy-sarfaraz-akram.netlify.app", "http://localhost:5173"],
     credentials: true,
   })
 );
 app.use(cookieParser());
 app.use(express.json({ limit: "100mb" }));
+
+app.get('/', (req, res)=>{
+  res.send('talksy running')
+})
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
